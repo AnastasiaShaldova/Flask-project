@@ -1,19 +1,17 @@
-from flask import Flask, session
+from flask import Flask
 
-app = Flask(__name__)
-app.secret_key = "secret key"
-
-
-@app.route('/')
-def index():
-    if 'visits' in session:
-        session['visits'] = session.get('visits') + 1
-    else:
-        session['visits'] = 1
-    return f'Количество посещений на сайте {session.get("visits")}'
+from blog.articles.views import articles
+from blog.user.views import user
+from blog.visit.views import visits
 
 
-@app.route('/del_visit')
-def del_visit():
-    session.pop('visits', None)
-    return 'Данные о посещениях очищены'
+def create_app() -> Flask:
+    app = Flask(__name__)
+    register_blueprints(app)
+    return app
+
+
+def register_blueprints(app: Flask):
+    app.register_blueprint(user)
+    app.register_blueprint(articles)
+    app.register_blueprint(visits)
