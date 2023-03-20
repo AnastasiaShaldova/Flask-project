@@ -3,5 +3,11 @@
 {% block title %} User detail {% endblock %}
 
 {% block body %}
-    <h1> {{ users.email }} </h1>
-{% endblock%}
+    <h1>
+        {% if current_user.is_authenticated %}
+            {{  users.email }}
+        {% else %}
+            anon
+        {% endif %}
+    </h1>
+{% endblock %}
