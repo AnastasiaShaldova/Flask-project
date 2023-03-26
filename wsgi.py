@@ -4,7 +4,11 @@ from blog.app import create_app
 from blog.models.database import db
 
 app = create_app()
-app.secret_key = "secret key"
+
+app.run(
+    host="0.0.0.0",
+    debug=True,
+)
 
 
 @app.cli.command("init-db")
@@ -16,7 +20,7 @@ def init_db():
 @app.cli.command("create-users")
 def create_users():
     from blog.models import Users
-    admin = Users(username="admin", email="admin@admin.ru", password=generate_password_hash('123456'),  is_staff=True)
+    admin = Users(username="admin", email="admin@admin.ru", password=generate_password_hash('123456'), is_staff=True)
     james = Users(username="james", email="james@james.ru", password=generate_password_hash('123456'), is_staff=False)
     db.session.add(admin)
     db.session.add(james)
