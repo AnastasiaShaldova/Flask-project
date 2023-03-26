@@ -10,3 +10,9 @@ class Users(db.Model, UserMixin):
     password = Column(String(255))
     is_staff = Column(Boolean, nullable=False, default=False)
 
+    def __init__(self, username, email, password, is_staff):
+        self.username = username
+        self.email = email
+        self.password = password
+        self.is_staff = is_staff
+

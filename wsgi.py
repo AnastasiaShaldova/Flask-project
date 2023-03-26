@@ -4,14 +4,16 @@ from blog.app import create_app
 from blog.models.database import db
 
 app = create_app()
-app.secret_key = "secret key"
 
+app.run(
+    host="0.0.0.0",
+    debug=True,
+)
 
 @app.cli.command("init-db")
 def init_db():
     db.create_all()
     print("БД создана")
-
 
 @app.cli.command("create-users")
 def create_users():
