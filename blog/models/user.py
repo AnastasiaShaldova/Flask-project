@@ -15,4 +15,3 @@ class Users(db.Model, UserMixin):
         self.email = email
         self.password = password
         self.is_staff = is_staff
-
