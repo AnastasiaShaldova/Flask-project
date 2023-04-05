@@ -11,6 +11,6 @@ def create_init_user():
 
     with app.app_context():
         db.session.add(
-            Users(email='name@example.com', password=generate_password_hash('123456'))
+            Users(username='Leo', email='name@example.com', password=generate_password_hash('123456'), is_staff=True)
         )
         db.session.commit()
